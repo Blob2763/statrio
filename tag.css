@@ -14,12 +14,17 @@
     --colour-golden-end: #aba4eb;
 }
 
+@font-face {
+    font-family: 'Hun DIN 1451';
+    src: url('hun.ttf');
+}
+
 body {
     margin: 24px;
 }
 
 .level-tag {
-    font-family: 'HUN-din 1451', sans-serif;
+    font-family: 'Hun DIN 1451', sans-serif;
     font-weight: 600;
     font-size: 18px;
     padding-top: 5px;

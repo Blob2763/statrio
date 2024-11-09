@@ -15,6 +15,11 @@
     src: url('cb.ttf');
 }
 
+@font-face {
+    font-family: 'Hun DIN 1451';
+    src: url('hun.ttf');
+}
+
 body {
     background: var(--primary-darkest);
 }
@@ -47,7 +52,7 @@ p {
 }
 
 #title {
-    font-family: 'HUN-din 1451', sans-serif;
+    font-family: 'Hun DIN 1451', sans-serif;
     font-size: 56pt;
 
     text-align: center;
