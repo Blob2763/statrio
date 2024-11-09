@@ -125,15 +125,16 @@ function updateData() {
                 }
 
                 // user data
-                const gamesWonSummary = userLeagueData['data']['gameswon'];
-                const gamesPlayedSummary = userLeagueData['data']['gamesplayed'];
-                const gamesLostSummary = gamesPlayedSummary - gamesWonSummary;
-                document.getElementById('tl-win-scale').innerText = numberWithSeperator(gamesWonSummary);
-                document.getElementById('tl-win-scale').style.width = `${gamesWonSummary / gamesPlayedSummary * 100}%`;
-                document.getElementById('tl-loss-scale').innerText = numberWithSeperator(gamesLostSummary);
-                document.getElementById('tl-loss-scale').style.width = `${gamesLostSummary / gamesPlayedSummary * 100}%`;
-                document.getElementById('tl-win-rate').innerText = numberWithSeperator(Math.round(gamesWonSummary / gamesPlayedSummary * 10000) / 100);
-                document.getElementById('tl-games-played').innerText = numberWithSeperator(gamesPlayedSummary);
+                const gamesWon = userLeagueData['data']['gameswon'];
+                const gamesPlayed = userLeagueData['data']['gamesplayed'];
+                const gamesLost = gamesPlayed - gamesWon;
+
+                document.getElementById('tl-win-scale').innerText = numberWithSeperator(gamesWon);
+                document.getElementById('tl-win-scale').style.width = `${gamesWon / gamesPlayed * 100}%`;
+                document.getElementById('tl-loss-scale').innerText = numberWithSeperator(gamesLost);
+                document.getElementById('tl-loss-scale').style.width = `${gamesLost / gamesPlayed * 100}%`;
+                document.getElementById('tl-win-rate').innerText = numberWithSeperator(Math.round(gamesWon / gamesPlayed * 10000) / 100);
+                document.getElementById('tl-games-played').innerText = numberWithSeperator(gamesPlayed);
 
                 document.getElementById('grade').innerText = rank === 'z' ? '?' : rank.toUpperCase();
                 document.getElementById('grade').style.color = gradeColours[rank];
