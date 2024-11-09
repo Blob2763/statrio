@@ -7,16 +7,12 @@
 
 @font-face {
     font-family: 'Config';
-    src: url('/fonts/cr.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
+    src: url('/fonts/cr.ttf');
 }
 
 @font-face {
     font-family: 'ConfigBold';
-    src: url('/fonts/cb.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
+    src: url('/fonts/cb.ttf');
 }
 
 body {
