@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TETRA STATS</title>
+
+    <!-- FONTS -->
+    <link href="https://fonts.cdnfonts.com/css/hun-din-1451" rel="stylesheet"> 
+
+    <!-- STYLESHEETS -->
+    <link rel="stylesheet" href="user.css">
+    <link rel="stylesheet" href="tag.css">
+
+    <!-- JAVASCRIPT -->
+    <script src="user.js" defer></script>
+</head>
+
+<body style="visibility: hidden;">
+    <h1 id="title"></h1>
+    <div id="stats-container">
+        <div class="header-container" style="border-bottom: 2px solid #46ad51;">
+            <h2 style="color: #46ad51;">WIN RATE</h2>
+        </div>
+        <br>
+        <div id="win-rate-scale">
+            <div id="win-scale" title="Online games won"></div>
+            <div id="loss-scale" title="Online games lost"></div>
+        </div>
+        <div id="win-rate-stats">
+            <p title="Number of online games played">Games played: <span id="games-played"></span></p>
+            <p title="Percentage of online games won">Win rate: <span id="win-rate"></span>%</p>
+        </div>
+
+        <div class="header-container" style="border-bottom: 2px solid #ff45ff;">
+            <h2 style="color: #ff45ff;">EXPERIENCE</h2>
+        </div>
+        <br>
+        <!-- <div id="xp-scale">
+            <div id="xp-gained"></div>
+            <div id="xp-remaining"></div>
+        </div> -->
+        <span id="xp-container" title="The user's experience points"><span id="xp"></span> XP</span><br>
+        <span id="xp-level" title="What level the user is at"></span>
+
+        <div class="header-container" style="border-bottom: 2px solid #ff3813;">
+            <h2 style="color: #ff3813;">TETRA LEAGUE</h2>
+        </div>
+        <br>
+        <div id="tl-win-rate-scale">
+            <div id="tl-win-scale" title="TETRA LEAGUE games won"></div>
+            <div id="tl-loss-scale" title="TETRA LEAGUE games lost"></div>
+        </div>
+        <p title="Number of TETRA LEAGUE games played">Games played: <span id="tl-games-played"></span></p>
+        <p title="Percentage of TETRA LEAGUE games won">Win rate: <span id="tl-win-rate"></span>%</p>
+        <div id="tl-grade-info">
+            <span id="grade" title="The user's letter rank"></span>
+            <span id="tr-container" title="The user's TETRA RATING"><span id="tr"></span> TR</span>
+        </div>
+
+        <div id="rank-graph"></div>
+        <!-- <img id="tr-pointer" src="pointer.png"></img> -->
+        <!-- THE POINTER CAN BE OUTSIDE OF THE RANK ZONE DUE TO RANK BOUNDARIES CHANGING
+        (PLAYER RANKS ONLY CHANGE AFTER EACH GAME THEY PLAY) -->
+
+        <div class="header-container" style="border-bottom: 2px solid #e0a71b;">
+            <h2 style="color: #e0a71b;">RANKINGS</h2>
+        </div>
+        <br>
+
+        <div class="leaderboard-container" id="tl-leaderboard">
+            <h3 class="leaderboard-heading">TETRA LEAGUE</h2>
+            <div class="leaderboard-entry leaderboard-title">
+                <span class="placement"></span>
+                <span class="name"></span>
+                <span class="glicko">GLICKO</span>
+                <span class="tr">TR</span>
+                <span class="rank">RANK</span>
+            </div>
+        </div>
+
+        
+    </div>
+</body>
+
+</html>

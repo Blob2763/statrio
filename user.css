@@ -1,0 +1,256 @@
+:root {
+    --primary: #664df6;
+    --primary-dark: #523adc;
+    --primary-darker: #3c2aa8;
+    --primary-darkest: #0c0531;
+}
+
+@font-face {
+    font-family: 'Config';
+    src: url('/fonts/cr.ttf');
+}
+
+@font-face {
+    font-family: 'Config Bold';
+    src: url('/fonts/cb.ttf');
+}
+
+body {
+    background: var(--primary-darkest);
+}
+
+p {
+    color: white;
+
+    font-family: 'Config', sans-serif;
+
+    white-space:pre;
+}
+
+.hide-warning {
+    font-family: 'Config', sans-serif;
+
+    background: repeating-linear-gradient(-45deg, #d02405, #d02405 10px, #a61b02 10px, #a61b02 20px);
+
+    border: 1px solid #d02405;
+    border-radius: 4px;
+
+    padding: 20px;
+
+    width: max-content;
+
+    margin: auto;
+}
+
+#stats-container {
+    margin: 30px;
+}
+
+#title {
+    font-family: 'HUN-din 1451', sans-serif;
+    font-size: 56pt;
+
+    text-align: center;
+
+    color: white;
+
+    margin-bottom: 0;
+}
+
+.header-container h2 {
+    font-family: Config, sans-serif;
+
+    position: relative;
+
+    bottom: -15px;
+    
+    padding-right: 10px;
+    margin: 0;
+    
+    display: inline-block;
+
+    background-color: var(--primary-darkest);
+}
+
+#win-rate-scale, #tl-win-rate-scale {
+    font-family: 'Config', sans-serif;
+
+    color: white;
+
+    display: flex;
+
+    justify-content: space-evenly;
+}
+
+#win-rate-scale div, #tl-win-rate-scale div {
+    padding: 8px;
+
+    font-family: 'Config Bold', sans-serif;
+}
+
+#win-scale, #tl-win-scale {
+    background: repeating-linear-gradient(-45deg, #46ad51, #46ad51 10px, #379641 10px, #379641 20px);
+    border-radius: 4px 0 0 4px;
+    border: 1px solid #46ad51;
+    border-right: none;
+    
+    text-align: right;
+    
+}
+
+#loss-scale, #tl-loss-scale {
+    background: repeating-linear-gradient(45deg, #ff3813, #ff3813 10px, #d02405 10px, #d02405 20px);
+    
+    border-radius: 0 4px 4px 0;
+    border: 1px solid #ff3813;
+    border-left: none;
+}
+
+#tl-grade-info {
+    color: white;
+}
+
+#grade {
+    font-size: 40pt;
+    font-family: 'Config Bold', sans-serif;
+    
+    padding-right: 16px;
+}
+
+#tr-container, #xp-container {
+    font-size: 30pt;
+
+    color: #717171;
+
+    font-family: 'Config', sans-serif;
+}
+
+#tr, #xp {
+    color: white;
+
+    font-family: 'Config Bold', sans-serif;
+}
+
+#rank-graph {
+    width: 100%;
+    
+    display: flex;
+    
+    flex-direction: row-reverse;
+}
+
+.grade-box {
+    height: 60px;
+    
+    border: 1px solid var(--primary-darkest);
+    
+    padding-left: 8px;
+
+    font-family: 'Config Bold', sans-serif;
+    font-size: 40px;
+
+    color: #0000005f;
+
+    text-overflow: clip;
+
+    display: flex;
+    align-items: center;
+}
+
+#tr-pointer {
+    position: absolute;
+    margin-bottom: -90px;
+
+    z-index: 1;
+
+    transform: translate(-50%, -46%);
+}
+
+#grade-box-d {
+    border-radius: 4px 0 0 4px;
+}
+
+#grade-box-x+ {
+    border-radius: 0 4px 4px 0;
+}
+
+.leaderboard-entry {
+    background-color: #664df631;
+
+    border-radius: 4px;
+
+    padding: 8px;
+
+    color: white;
+
+    display: flex;
+
+    margin: auto;
+    margin-top: 4px;
+
+    width: 60%;
+}
+
+.leaderboard-you {
+    background-color: #664df654;
+}
+
+.leaderboard-entry .placement {
+    font-family: 'Config', sans-serif;
+
+    width: 150px;
+}
+
+.leaderboard-entry .name {
+    font-family: 'Config Bold', sans-serif;
+
+    width: 50%;
+}
+
+.leaderboard-entry .glicko {
+    font-family: 'Config', sans-serif;
+
+    width: 50%;
+
+    text-align: center;
+}
+
+.leaderboard-entry .tr {
+    font-family: 'Config', sans-serif;
+
+    width: 50%;
+
+    text-align: center;
+}
+
+.leaderboard-entry .rank {
+    font-family: 'Config Bold', sans-serif;
+    
+    width: 100px;
+    
+    text-align: center;
+}
+
+.leaderboard-title {
+    background: none;
+}
+
+.leaderboard-title span {
+    font-family: 'Config', sans-serif !important;
+}
+
+.leaderboard-heading {
+    text-align: center;
+
+    color: white;
+    
+    font-family: 'Config Bold', sans-serif;
+}
+
+.leaderboard-container {
+    font-family: 'Config', sans-serif;
+
+    color: white;
+
+    text-align: center;
+}
