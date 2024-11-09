@@ -6,7 +6,7 @@
 
 @font-face {
     font-family: 'Config';
-    src: url('/fonts/cr.ttf');
+    src: url('cr.ttf');
 }
 
 html {
