@@ -90,7 +90,7 @@ p {
     padding: 8px;
 
     font-family: 'ConfigBold', sans-serif;
-
+    font-weight: 700;
 }
 
 #win-scale, #tl-win-scale {
@@ -118,7 +118,7 @@ p {
 #grade {
     font-size: 40pt;
     font-family: 'ConfigBold', sans-serif;
-
+    font-weight: 700;
     
     padding-right: 16px;
 }
@@ -135,7 +135,7 @@ p {
     color: white;
 
     font-family: 'ConfigBold', sans-serif;
-
+    font-weight: 700;
 }
 
 #rank-graph {
@@ -154,7 +154,7 @@ p {
     padding-left: 8px;
 
     font-family: 'ConfigBold', sans-serif;
-
+    font-weight: 700;
     font-size: 40px;
 
     color: #0000005f;
@@ -211,7 +211,7 @@ p {
 
 .leaderboard-entry .name {
     font-family: 'ConfigBold', sans-serif;
-
+    font-weight: 700;
 
     width: 50%;
 }
@@ -234,7 +234,7 @@ p {
 
 .leaderboard-entry .rank {
     font-family: 'ConfigBold', sans-serif;
-
+    font-weight: 700;
     
     width: 100px;
     
@@ -255,7 +255,7 @@ p {
     color: white;
     
     font-family: 'ConfigBold', sans-serif;
-
+    font-weight: 700;
 }
 
 .leaderboard-container {
