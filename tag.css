@@ -1,13 +1,3 @@
-@font-face {
-    font-family: 'Config';
-    src: url('/fonts/cr.ttf');
-}
-
-@font-face {
-    font-family: 'Config Bold';
-    src: url('/fonts/cb.ttf');
-}
-
 :root {
     --colour-0: #ddd;
     --colour-1: #fe5858;

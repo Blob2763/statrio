@@ -11,8 +11,8 @@
 }
 
 @font-face {
-    font-family: 'Config Bold';
-    src: url('/fonts/cbold.ttf');
+    font-family: 'ConfigBold';
+    src: url('/fonts/cb.ttf');
 }
 
 body {
@@ -58,7 +58,7 @@ p {
 }
 
 .header-container h2 {
-    font-family: Config, sans-serif;
+    font-family: 'Config', sans-serif;
 
     position: relative;
 
@@ -85,7 +85,8 @@ p {
 #win-rate-scale div, #tl-win-rate-scale div {
     padding: 8px;
 
-    font-family: 'Config Bold', sans-serif;
+    font-family: 'ConfigBold', sans-serif;
+
 }
 
 #win-scale, #tl-win-scale {
@@ -112,7 +113,8 @@ p {
 
 #grade {
     font-size: 40pt;
-    font-family: 'Config Bold', sans-serif;
+    font-family: 'ConfigBold', sans-serif;
+
     
     padding-right: 16px;
 }
@@ -128,7 +130,8 @@ p {
 #tr, #xp {
     color: white;
 
-    font-family: 'Config Bold', sans-serif;
+    font-family: 'ConfigBold', sans-serif;
+
 }
 
 #rank-graph {
@@ -146,7 +149,8 @@ p {
     
     padding-left: 8px;
 
-    font-family: 'Config Bold', sans-serif;
+    font-family: 'ConfigBold', sans-serif;
+
     font-size: 40px;
 
     color: #0000005f;
@@ -202,7 +206,8 @@ p {
 }
 
 .leaderboard-entry .name {
-    font-family: 'Config Bold', sans-serif;
+    font-family: 'ConfigBold', sans-serif;
+
 
     width: 50%;
 }
@@ -224,7 +229,8 @@ p {
 }
 
 .leaderboard-entry .rank {
-    font-family: 'Config Bold', sans-serif;
+    font-family: 'ConfigBold', sans-serif;
+
     
     width: 100px;
     
@@ -244,7 +250,8 @@ p {
 
     color: white;
     
-    font-family: 'Config Bold', sans-serif;
+    font-family: 'ConfigBold', sans-serif;
+
 }
 
 .leaderboard-container {
