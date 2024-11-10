@@ -31,10 +31,10 @@ document.getElementById('tc-link').href = `https://ch.tetr.io/u/${username}`;
 // Wait for all fetch requests to complete before making the body visible
 const sessionId = generateSessionID();
 const fetchConfig = {
-    method: 'GET', // or 'POST', 'PUT', etc., depending on your request
+    method: 'GET',
     headers: {
-        'Content-Type': 'application/json', // optional, depends on your API requirements
-        // 'X-Session-ID': sessionId, // add the session ID here
+        'Content-Type': 'application/json',
+        // 'X-Session-ID': sessionId,
         'mode': 'no-cors',
     }
 };
@@ -304,7 +304,7 @@ function numberWithSeperator(x) {
 }
 
 function generateSessionID() {
-    const array = new Uint8Array(16); // 16 bytes = 128 bits
+    const array = new Uint8Array(16);
     window.crypto.getRandomValues(array);
     return Array.from(array, byte => byte.toString(16).padStart(2, '0')).join('');
 }
