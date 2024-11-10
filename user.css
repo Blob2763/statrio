@@ -29,7 +29,7 @@ p {
 
     font-family: 'Config', sans-serif;
 
-    white-space:pre;
+    white-space: pre;
 }
 
 .hide-warning {
@@ -68,16 +68,17 @@ p {
     position: relative;
 
     bottom: -15px;
-    
+
     padding-right: 10px;
     margin: 0;
-    
+
     display: inline-block;
 
     background-color: var(--primary-darkest);
 }
 
-#win-rate-scale, #tl-win-rate-scale {
+#win-rate-scale,
+#tl-win-rate-scale {
     font-family: 'Config', sans-serif;
 
     color: white;
@@ -87,25 +88,28 @@ p {
     justify-content: space-evenly;
 }
 
-#win-rate-scale div, #tl-win-rate-scale div {
+#win-rate-scale div,
+#tl-win-rate-scale div {
     padding: 8px;
 
     font-family: 'Config Bold', sans-serif;
 }
 
-#win-scale, #tl-win-scale {
+#win-scale,
+#tl-win-scale {
     background: repeating-linear-gradient(-45deg, #46ad51, #46ad51 10px, #379641 10px, #379641 20px);
     border-radius: 4px 0 0 4px;
     border: 1px solid #46ad51;
     border-right: none;
-    
+
     text-align: right;
-    
+
 }
 
-#loss-scale, #tl-loss-scale {
+#loss-scale,
+#tl-loss-scale {
     background: repeating-linear-gradient(45deg, #ff3813, #ff3813 10px, #d02405 10px, #d02405 20px);
-    
+
     border-radius: 0 4px 4px 0;
     border: 1px solid #ff3813;
     border-left: none;
@@ -118,11 +122,12 @@ p {
 #grade {
     font-size: 40pt;
     font-family: 'Config Bold', sans-serif;
-    
+
     padding-right: 16px;
 }
 
-#tr-container, #xp-container {
+#tr-container,
+#xp-container {
     font-size: 30pt;
 
     color: #717171;
@@ -130,7 +135,8 @@ p {
     font-family: 'Config', sans-serif;
 }
 
-#tr, #xp {
+#tr,
+#xp {
     color: white;
 
     font-family: 'Config Bold', sans-serif;
@@ -138,17 +144,17 @@ p {
 
 #rank-graph {
     width: 100%;
-    
+
     display: flex;
-    
+
     flex-direction: row-reverse;
 }
 
 .grade-box {
     height: 60px;
-    
+
     border: 1px solid var(--primary-darkest);
-    
+
     padding-left: 8px;
 
     font-family: 'Config Bold', sans-serif;
@@ -157,9 +163,16 @@ p {
     color: #0000005f;
 
     text-overflow: clip;
-
+    
     display: flex;
     align-items: center;
+    
+    position: relative;
+    left: auto;
+}
+
+.grade-box span {
+    overflow: hidden;
 }
 
 #tr-pointer {
@@ -230,9 +243,9 @@ p {
 
 .leaderboard-entry .rank {
     font-family: 'Config Bold', sans-serif;
-    
+
     width: 100px;
-    
+
     text-align: center;
 }
 
@@ -248,7 +261,7 @@ p {
     text-align: center;
 
     color: white;
-    
+
     font-family: 'Config Bold', sans-serif;
 }
 
@@ -258,4 +271,15 @@ p {
     color: white;
 
     text-align: center;
+}
+
+#tc-link {
+    font-family: 'Hun DIN 1451';
+
+    text-align: center;
+    text-decoration: dotted;
+    
+    color: #79e25e;
+    
+    display: block;
 }

@@ -26,6 +26,7 @@ const params = new URLSearchParams(window.location.search);
 const username = params.get('username').toLowerCase();
 
 document.getElementById('title').innerText = username.toUpperCase();
+document.getElementById('tc-link').href = `https://ch.tetr.io/u/${username}`;
 
 // Wait for all fetch requests to complete before making the body visible
 const sessionId = generateSessionID();
@@ -103,13 +104,19 @@ function updateData() {
                         gradeSection.className = 'grade-box';
                         gradeSection.id = `grade-box-${grade}`;
                         gradeSection.style.backgroundColor = gradeColours[grade];
-                        gradeSection.innerText = grade.toUpperCase();
+                        gradeSection.innerHTML = `<span>${grade.toUpperCase()}</span>`;
                         // gradeSection.style.width = `${(gradeData[grade]['count'] / gradeData['total']) * 100}%`;
                         gradeSection.style.width = `${((previousTR - currentTR) / 25000) * 100}%`;
                         if (counter === 0) { gradeSection.style.borderRadius = '0 4px 4px 0'; }
                         if (counter === Object.keys(gradeData).length - 1) { gradeSection.style.borderRadius = '4px 0 0 4px'; }
 
-                        if (previousTR >= tr && tr >= currentTR) {
+                        if (previousTR >= tr && tr > currentTR) {
+                            console.log(`${grade} starts at ${currentTR}TR`);
+                            console.log(`Your TR: ${tr}TR`);
+                            console.log(`TR difference: ${tr - currentTR}TR`);
+                            console.log(`Grade width: ${previousTR - currentTR}TR`);
+                            console.log(`Pointer %: ${(tr - currentTR) / (previousTR - currentTR) * 100}%`);
+
                             gradeSection.innerHTML += '<img id="tr-pointer" src="pointer.png"></img>';
                             document.getElementById('rank-graph').appendChild(gradeSection);
                             document.getElementById('tr-pointer').style.left = `${(tr - currentTR) / (previousTR - currentTR) * 100}%`;
