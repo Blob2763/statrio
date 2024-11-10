@@ -34,7 +34,7 @@ const fetchConfig = {
     method: 'GET', // or 'POST', 'PUT', etc., depending on your request
     headers: {
         'Content-Type': 'application/json', // optional, depends on your API requirements
-        'X-Session-ID': sessionId, // add the session ID here
+        // 'X-Session-ID': sessionId, // add the session ID here
         'mode': 'no-cors',
     }
 };
