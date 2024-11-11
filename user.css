@@ -427,3 +427,14 @@ h3 {
     flex-direction: column;
     justify-content: center;
 }
+
+#last-hr {
+    border: none;
+    border-top: 1px solid #aa98ff3a;
+}
+
+#last-updated {
+    color: #aa98ff3a;
+
+    text-align: center;
+}

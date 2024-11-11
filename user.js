@@ -39,7 +39,10 @@ const fetchConfig = {
     }
 };
 
-const interval = setInterval(updateData, 30000);
+const dataInterval = setInterval(updateData, 30000);
+const lastUpdatedInterval = setInterval(updateLastUpdated, 100);
+
+let lastUpdated;
 
 updateData();
 
@@ -67,17 +70,17 @@ function updateData() {
                 document.getElementById('win-rate-scale').innerHTML = '<p class="hide-warning">User has not played any games yet</p>';
                 document.getElementById('win-rate-stats').innerHTML = '';
             } else {
-                document.getElementById('win-scale').innerText = numberWithSeperator(gamesWon);
+                document.getElementById('win-scale').innerText = numberWithSeperator(gamesWon, 0);
                 document.getElementById('win-scale').style.width = `${gamesWon / gamesPlayed * 100}%`;
-                document.getElementById('loss-scale').innerText = numberWithSeperator(gamesLost);
+                document.getElementById('loss-scale').innerText = numberWithSeperator(gamesLost, 0);
                 document.getElementById('loss-scale').style.width = `${gamesLost / gamesPlayed * 100}%`;
                 document.getElementById('win-rate').innerText = numberWithSeperator(Math.round(gamesWon / gamesPlayed * 10000) / 100);
-                document.getElementById('games-played').innerText = numberWithSeperator(gamesPlayed);
+                document.getElementById('games-played').innerText = numberWithSeperator(gamesPlayed, 0);
             }
 
             // EXPERIENCE
             const xpCount = userData['data']['xp'];
-            document.getElementById('xp').innerText = numberWithSeperator(Math.round(xpCount));
+            document.getElementById('xp').innerText = numberWithSeperator(Math.round(xpCount), 0);
             const level = calculateLevel(xpCount)
             document.getElementById('xp-level').innerText = level;
             if (level < 5000) {
@@ -136,12 +139,12 @@ function updateData() {
                 const gamesPlayed = userLeagueData['data']['gamesplayed'];
                 const gamesLost = gamesPlayed - gamesWon;
 
-                document.getElementById('tl-win-scale').innerText = numberWithSeperator(gamesWon);
+                document.getElementById('tl-win-scale').innerText = numberWithSeperator(gamesWon, 0);
                 document.getElementById('tl-win-scale').style.width = `${gamesWon / gamesPlayed * 100}%`;
-                document.getElementById('tl-loss-scale').innerText = numberWithSeperator(gamesLost);
+                document.getElementById('tl-loss-scale').innerText = numberWithSeperator(gamesLost, 0);
                 document.getElementById('tl-loss-scale').style.width = `${gamesLost / gamesPlayed * 100}%`;
                 document.getElementById('tl-win-rate').innerText = numberWithSeperator(Math.round(gamesWon / gamesPlayed * 10000) / 100);
-                document.getElementById('tl-games-played').innerText = numberWithSeperator(gamesPlayed);
+                document.getElementById('tl-games-played').innerText = numberWithSeperator(gamesPlayed, 0);
 
                 document.getElementById('grade').innerText = rank === 'z' ? '?' : rank.toUpperCase();
                 document.getElementById('grade').style.color = gradeColours[rank];
@@ -305,9 +308,9 @@ function updateData() {
                                         const entryElement = document.createElement('div');
                                         entryElement.className = 'leaderboard-entry' + (entry['username'] === username ? ' leaderboard-you' : '');
                                         entryElement.innerHTML = `
-                                            <span class="placement">#${userTLPlacement + placementOffset}</span>
+                                            <span class="placement">#${numberWithSeperator(userTLPlacement + placementOffset, 0)}</span>
                                             <span class="name">${entry['username'].toUpperCase()}</span>
-                                            <span class="glicko">${numberWithSeperator(entry['league']['glicko'])}±${numberWithSeperator(Math.round(entry['league']['rd']))}</span>
+                                            <span class="glicko">${numberWithSeperator(entry['league']['glicko'])}±${numberWithSeperator(Math.round(entry['league']['rd']), 0)}</span>
                             <span class="tr">${numberWithSeperator(entry['league']['tr'])}</span>
                             <span class="rank" style="color: ${gradeColours[entry['league']['rank']]};">${entry['league']['rank'] === 'z' ? '?' : entry['league']['rank'].toUpperCase()}</span>
                             `;
@@ -330,6 +333,8 @@ function updateData() {
             // FINISH
             // make body visible
             document.body.style.visibility = 'visible';
+
+            lastUpdated = Date.now();
         })
         .catch(error => {
             console.error('There was a problem with the fetch operations:', error);
@@ -341,12 +346,12 @@ function calculateLevel(xp) {
     return Math.floor((xp / 500) ** 0.6 + (xp / (5000 + Math.max(0, xp - 4000000) / 5000) + 1))
 }
 
-function numberWithSeperator(x) {
+function numberWithSeperator(x, fractionDigits = 2) {
     // return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
 
     return x.toLocaleString(undefined, {
-        // minimumFractionDigits: 2,
-        maximumFractionDigits: 2,
+        minimumFractionDigits: fractionDigits,
+        maximumFractionDigits: fractionDigits,
     })
 }
 
@@ -354,4 +359,9 @@ function generateSessionID() {
     const array = new Uint8Array(16);
     window.crypto.getRandomValues(array);
     return Array.from(array, byte => byte.toString(16).padStart(2, '0')).join('');
+}
+
+function updateLastUpdated() {
+    const secondsAgo = (Date.now() - lastUpdated) / 1000;
+    document.getElementById('last-updated').innerText = `Last updated ${numberWithSeperator(secondsAgo, 1)} seconds ago`;
 }
