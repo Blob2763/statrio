@@ -39,7 +39,7 @@ const fetchConfig = {
     }
 };
 
-const interval = setInterval(updateData, 30000);
+// const interval = setInterval(updateData, 30000);
 
 updateData();
 
@@ -173,6 +173,53 @@ function updateData() {
                 document.getElementById('tr').innerText = '?';
             }
 
+            // recent games
+            fetch(corsProxy + `https://ch.tetr.io/api/users/${username}/records/league/recent`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json(); // Parse the JSON from the response
+                })
+                .then(data => {
+                    const entries = data['data']['entries'];
+
+                    const recentGamesElement = document.getElementById('recent-tl-games');
+                    recentGamesElement.innerHTML = '';
+                    for (let i = 0; i < Math.min(6, entries.length); i++) {
+                        const currentEntry = entries[i];
+                        console.log(currentEntry);
+
+                        const entryLeaderboard = currentEntry['results']['leaderboard']
+                        let userScore, opponentScore;
+                        if (entryLeaderboard[0]['username'] === username) {
+                            userScore = entryLeaderboard[0]['wins']
+                            opponentScore = entryLeaderboard[1]['wins']
+                        } else {
+                            userScore = entryLeaderboard[1]['wins']
+                            opponentScore = entryLeaderboard[0]['wins']
+                        }
+                        const isUserWin = userScore > opponentScore;
+
+                        const userWidth = userScore === 0 ? 'auto' : `${userScore / (userScore + opponentScore) * 100}%`;
+                        const opponentWidth = opponentScore === 0 ? 'auto' : `${opponentScore / (userScore + opponentScore) * 100}%`;
+
+                        recentGamesElement.innerHTML += `
+                            <div class="tl-game-container">
+                                <span class="user-label">${username.toUpperCase()}</span>
+                                <div class="tl-game ${isUserWin ? 'user-win' : 'user-lose'}">
+                                    <div class="user${isUserWin ? '' : ' loser'}" style="width: ${userWidth};">${userScore}</div>
+                                    <div class="opponent ${isUserWin ? 'loser' : ''}" style="width: ${opponentWidth};">${opponentScore}</div>
+                                </div>
+                                <span class="opponent-label">${currentEntry['otherusers'][0]['username'].toUpperCase()}</span>
+                            </div>
+                        `;
+                    }
+                })
+                .catch(error => {
+                    console.error('There was a problem with the fetch operation:', error);
+                });
+
             // RANKINGS
             if (rank === 'z') {
                 document.getElementById('tl-leaderboard').innerHTML = 'No TETRA LEAGUE ranking';
@@ -185,64 +232,64 @@ function updateData() {
                     userTLPlacement++;
                 }
 
-                if (userTLPlacement > 0) {   
+                if (userTLPlacement > 0) {
                     fetch(corsProxy + `https://ch.tetr.io/api/users/by/league?limit=${Math.min(userTLPlacement - 1, 2)}&before=${tr}:0:0`)
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error('Network response was not ok');
-                        }
-                        return response.json(); // Parse the JSON from the response
-                    })
-                    .then(better => {
-                        userTLPlacement--;
-
-                        console.log('better', better); // Use the data from the response
-                            
-                        const betterEntries = better['data']['entries'];
-
-                        let priSecTer;
-                        if (!isFirst) {   
-                            priSecTer = betterEntries[betterEntries.length - 1]['p'];
-                        } else {
-                            priSecTer = { 'pri': tr, 'sec': 0, 'ter': 0 };
-                        }
-
-                        const pri = priSecTer['pri'];
-                        const sec = priSecTer['sec'];
-                        const ter = priSecTer['ter'];
-                        
-                        fetch(corsProxy + `https://ch.tetr.io/api/users/by/league?limit=${Math.max(5 - userTLPlacement, 3)}&after=${pri}:${sec}:${ter}`)
                         .then(response => {
                             if (!response.ok) {
                                 throw new Error('Network response was not ok');
                             }
                             return response.json(); // Parse the JSON from the response
                         })
-                            .then(worse => {
-                                console.log('worse', worse); // Use the data from the response
-                                
-                                const worseEntries = worse['data']['entries'];
-                                
-                                let leaderboard;
-                                if (isFirst) {
-                                    const playerEntry = {
-                                        'username': username,
-                                        'league': {
-                                            'glicko': userLeagueData['data']['glicko'],
-                                            'rd': userLeagueData['data']['rd'],
-                                            'tr': tr,
-                                            'rank': rank,
-                                        }
-                                    };
+                        .then(better => {
+                            userTLPlacement--;
 
-                                    console.log(playerEntry);
-                                    leaderboard = [playerEntry].concat(worseEntries);
-                                } else {
-                                    leaderboard = betterEntries.concat(worseEntries);
-                                }
-                                console.log(leaderboard);
-                                
-                                document.getElementById('tl-leaderboard').innerHTML = `
+                            console.log('better', better); // Use the data from the response
+
+                            const betterEntries = better['data']['entries'];
+
+                            let priSecTer;
+                            if (!isFirst) {
+                                priSecTer = betterEntries[betterEntries.length - 1]['p'];
+                            } else {
+                                priSecTer = { 'pri': tr, 'sec': 0, 'ter': 0 };
+                            }
+
+                            const pri = priSecTer['pri'];
+                            const sec = priSecTer['sec'];
+                            const ter = priSecTer['ter'];
+
+                            fetch(corsProxy + `https://ch.tetr.io/api/users/by/league?limit=${Math.max(5 - userTLPlacement, 3)}&after=${pri}:${sec}:${ter}`)
+                                .then(response => {
+                                    if (!response.ok) {
+                                        throw new Error('Network response was not ok');
+                                    }
+                                    return response.json(); // Parse the JSON from the response
+                                })
+                                .then(worse => {
+                                    console.log('worse', worse); // Use the data from the response
+
+                                    const worseEntries = worse['data']['entries'];
+
+                                    let leaderboard;
+                                    if (isFirst) {
+                                        const playerEntry = {
+                                            'username': username,
+                                            'league': {
+                                                'glicko': userLeagueData['data']['glicko'],
+                                                'rd': userLeagueData['data']['rd'],
+                                                'tr': tr,
+                                                'rank': rank,
+                                            }
+                                        };
+
+                                        console.log(playerEntry);
+                                        leaderboard = [playerEntry].concat(worseEntries);
+                                    } else {
+                                        leaderboard = betterEntries.concat(worseEntries);
+                                    }
+                                    console.log(leaderboard);
+
+                                    document.getElementById('tl-leaderboard').innerHTML = `
                                 <h3 class="leaderboard-heading">TETRA LEAGUE</h2>
                                     <div class="leaderboard-entry leaderboard-title">
                                     <span class="placement"></span>
@@ -252,34 +299,34 @@ function updateData() {
                                         <span class="rank">RANK</span>
                                         </div>
                                         `;
-                                        
-                                        let placementOffset = -Math.min(userTLPlacement - 1, 2);
-                                        leaderboard.forEach(entry => {
-                                            const entryElement = document.createElement('div');
-                                            entryElement.className = 'leaderboard-entry' + (entry['username'] === username ? ' leaderboard-you' : '');
-                                            entryElement.innerHTML = `
+
+                                    let placementOffset = -Math.min(userTLPlacement - 1, 2);
+                                    leaderboard.forEach(entry => {
+                                        const entryElement = document.createElement('div');
+                                        entryElement.className = 'leaderboard-entry' + (entry['username'] === username ? ' leaderboard-you' : '');
+                                        entryElement.innerHTML = `
                                             <span class="placement">#${userTLPlacement + placementOffset}</span>
                                             <span class="name">${entry['username'].toUpperCase()}</span>
                                             <span class="glicko">${numberWithSeperator(entry['league']['glicko'])}±${numberWithSeperator(Math.round(entry['league']['rd']))}</span>
                             <span class="tr">${numberWithSeperator(entry['league']['tr'])}</span>
                             <span class="rank" style="color: ${gradeColours[entry['league']['rank']]};">${entry['league']['rank'] === 'z' ? '?' : entry['league']['rank'].toUpperCase()}</span>
                             `;
-                            
-                            document.getElementById('tl-leaderboard').appendChild(entryElement);
-                            
-                                    placementOffset++;
+
+                                        document.getElementById('tl-leaderboard').appendChild(entryElement);
+
+                                        placementOffset++;
+                                    });
+                                })
+                                .catch(error => {
+                                    console.error('There was a problem with the fetch operation:', error);
                                 });
-                            })
-                            .catch(error => {
-                                console.error('There was a problem with the fetch operation:', error);
-                            });
-                    })
-                    .catch(error => {
-                        console.error('There was a problem with the fetch operation:', error);
-                    });
+                        })
+                        .catch(error => {
+                            console.error('There was a problem with the fetch operation:', error);
+                        });
                 }
             }
-            
+
             // FINISH
             // make body visible
             document.body.style.visibility = 'visible';

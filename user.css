@@ -257,7 +257,9 @@ p {
     font-family: 'Config', sans-serif !important;
 }
 
-.leaderboard-heading {
+h3 {
+    width: 100%;
+
     text-align: center;
 
     color: white;
@@ -282,4 +284,146 @@ p {
     color: #79e25e;
     
     display: block;
+}
+
+.tl-game {
+    font-family: 'Config Bold', sans-serif;
+    
+    margin: auto;
+
+    width: 60%;
+    
+    color: black;
+
+    border-radius: 4px;
+
+    height: 36px;
+
+    display: inline-flex;
+
+    justify-content: space-between;
+
+    position: relative;
+}
+
+.tl-game.user-win {
+    background: repeating-linear-gradient(-45deg, #ffa742, #ffa742 10px, #f19a38 10px, #f19a38 20px);
+}
+
+
+.tl-game.user-lose {
+    background: repeating-linear-gradient(-45deg, #8b8bff, #8b8bff 10px, #7c7cf3 10px, #7c7cf3 20px);
+}
+
+.tl-game .user {
+    font-family: 'Config Bold', sans-serif;
+
+    padding-left: 8px;
+    padding-right: 8px;
+
+    position: relative;
+
+    border-radius: 4px 0 0 4px;
+
+    line-height: 36px;
+
+    display: inline-block;
+}
+
+.tl-game .user.loser {
+    background-color: #1e1357;
+
+    color: white;
+}
+
+.tl-game .user.loser::after {
+    background-color: #1e1357;
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 100%;
+    bottom: 0;
+    width: 6px;
+    clip-path: polygon(0 0, 100% 0, 0 50%, 100% 100%, 0 100%);
+}
+
+.tl-game .opponent {
+    font-family: 'Config Bold', sans-serif;
+
+    padding-left: 8px;
+    padding-right: 8px;
+
+    position: relative;
+
+    border-radius: 0 4px 4px 0;
+
+    text-align: right;
+
+    line-height: 36px;
+
+    display: inline-block;
+}
+
+.tl-game .opponent.loser {
+    background-color: #1e1357;
+
+    color: white;
+}
+
+.tl-game .opponent.loser::before {
+    background-color: #1e1357;
+    content: '';
+    position: absolute;
+    top: 0;
+    right: calc(100% - 1px);
+    bottom: 0;
+    width: 6px;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, calc(100% - 1px) 50%);
+}
+
+.tl-score {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.tl-game-container {
+    font-family: 'Config Bold', sans-serif;
+
+    color: white;
+
+    line-height: 36px;
+
+    margin: auto;
+    padding-bottom: 8px;
+
+    width: 100%;
+
+    display: flex;
+}
+
+.user-label, .opponent-label {
+    display: inline-block;
+
+    width: 20%;
+}
+
+.user-label {
+    text-align: right;
+
+    margin-right: 8px;
+}
+
+.opponent-label {
+    text-align: left;
+    
+    margin-left: 8px;
+}
+
+#recent-tl-games {
+    display: flex;
+
+    flex-direction: column;
+    justify-content: center;
 }
