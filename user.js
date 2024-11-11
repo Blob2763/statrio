@@ -39,7 +39,7 @@ const fetchConfig = {
     }
 };
 
-// const interval = setInterval(updateData, 30000);
+const interval = setInterval(updateData, 30000);
 
 updateData();
 
