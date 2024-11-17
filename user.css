@@ -136,7 +136,8 @@ p {
 }
 
 #tr,
-#xp {
+#xp,
+#pb-time-40l {
     color: white;
 
     font-family: 'Config Bold', sans-serif;
@@ -437,4 +438,8 @@ h3 {
     color: #aa98ff3a;
 
     text-align: center;
+}
+
+#pb-time-40l {
+    font-size: 30pt;
 }
