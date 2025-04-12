@@ -20,7 +20,7 @@ const gradeColours = {
     'x+': '#a763ea',
 }
 
-const corsProxy = 'https://corsproxy.io/?';
+const corsProxy = 'https://corsproxy.io/?url=';
 
 const params = new URLSearchParams(window.location.search);
 const username = params.get('username').toLowerCase();
